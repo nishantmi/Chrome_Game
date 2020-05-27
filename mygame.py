@@ -276,15 +276,10 @@ while run:
     updateScreen(screen)
 
     pygame.display.flip()
-    for event in pygame.event.get():
-        if event.type==pygame.QUIT:
-            pygame.quit()
-            exit(0)
+    # for event in pygame.event.get():
+    #     if event.type==pygame.QUIT:
+    #         pygame.quit()
+    #         exit(0)
 
     if len(dinos) == 0:
         run = False
-
-
-
-
-
