@@ -222,20 +222,42 @@ while run:
         if cactus.crossed():
             cactii.remove(cactus)
 
-    #part that controls ducking, jumping
-    keys = pygame.key.get_pressed()
+    #part that controls ducking, jumping - This code does not work with controller
+#    keys = pygame.key.get_pressed()
+#
+#    for dino in dinos:
+#        if not dino.jumping and not dino.died:
+#            if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
+#                dino.jumping = True
+#            elif keys[pygame.K_DOWN]:
+#                dino.duck()
+#            else:
+#                dino.running()
+#
+#        if dino.jumping:
+#            dino.jump()
 
-    for dino in dinos:
-        if not dino.jumping and not dino.died:
-            if keys[pygame.K_SPACE] or keys[pygame.K_UP]:
-                dino.jumping = True
-            elif keys[pygame.K_DOWN]:
-                dino.duck()
-            else:
-                dino.running()
+#   Code that works with controller
 
-        if dino.jumping:
-            dino.jump()
+    for event in pygame.event.get():
+        if event.type==pygame.QUIT:
+            pygame.quit()
+            exit(0)
+        if event.type == KEYDOWN:
+            if event.key == pygame.K_SPACE or event.key == pygame.K_UP:
+                d1.jumping = True
+            if event.key == pygame.K_DOWN:
+                d1.duck()
+                d1.ducking = True
+        if event.type == KEYUP:
+            if event.key == pygame.K_DOWN:
+                d1.ducking = False
+
+    if ~d1.jumping and ~d1.ducking:
+        d1.running()
+
+    if d1.jumping:
+        d1.jump()
 
     #decting collisons and updating dino score
     index = 0
